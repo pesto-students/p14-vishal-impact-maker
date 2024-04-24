@@ -1,0 +1,140 @@
+Question 1:
+
+1. First Normal Form (1NF):
+In 1NF, each attribute must have a single value,and there
+should be no repeating groups within a table.
+
+The given table, is already in 1NF since each cell contains a single value,
+and there are no repeating groups.
+
+2. Second Normal Form (2NF)
+In 2NF, the table must first be in 1NF, and all attributes must depend on the entire primary key.
+
+Given that the Book ID serves as the primary key, and all other attributes (Title, Author,Genre,
+Publisher,ISBN, Price)are functionally dependent on the Book ID, the table is already in 2NF.
+
+3. Third Normal Form (3NF)
+In 3NF, the table must first be in 2NF, and there should be no transitive dependencies.
+Transitive dependencies occur when a non-prime attribute depends on another non-prime attribute.
+
+In this table there is a transitive dependency between Publisher and ISBN.
+The Publisher attribute depends on Book ID, and ISBN depends on Publisher.
+So we remove Publisher attribute from the table and make a separate table
+
+Book ID | Title                  | Author            | Genre   | Price
+----------------------------------------------------------------------
+101     | To Kill a Mockingbird | Harper Lee        | Fiction | 10.99
+102     | The Great Gatsby       | F. Scott Fitzgerald | Fiction | 12.50
+103     | Principles of Physics  | Jearl Walker      | Science | 50.00
+
+Publisher    | Book ID
+-------------------------
+HarperCollins | 101
+Scribner      | 102
+Wiley         | 103
+
+
+Question 2:
+
+1. First Normal Form
+This table is in first normal form since each cell contains a single value and there are no repeating groups
+
+2. Second Normal Form
+This table is in second normal form as all the non key attributes as dependent on primary key
+
+3. Thirs Normal Form
+To convert into third normal form you have have to remove transitive dependencies
+
+We will create a separate table for employee table and project table and will update the original employee table
+
+Employee Table
+
+Employee ID | Employee Name | Department | Salary
+------------------------------------------------
+101         | John Doe      | HR         | 5000
+102         | Jane Smith    | Marketing  | 5500
+103         | Mike Johnson  | IT         | 6000
+104         | Sarah Brown   | HR         | 4800
+105         | Robert Lee    | Finance    | 5200
+106         | Lisa Wang     | IT         | 5800
+
+Project Table
+
+Project ID | Project Name
+-------------------------
+001        | Project A
+002        | Project B
+003        | Project C
+
+Original Table updated
+
+Employee ID | Department | Project ID | Start Date | End Date   | Salary
+-----------------------------------------------------------------------
+101         | HR         | 001        | 2023-01-15 | 2023-06-30 | 5000
+101         | HR         | 002        | 2023-04-01 | 2023-08-31 | 5200
+102         | Marketing  | 001        | 2023-02-01 | 2023-05-31 | 5500
+103         | IT         | 002        | 2023-03-10 | 2023-08-15 | 6000
+103         | IT         | 003        | 2023-06-15 | 2023-11-30 | 6200
+104         | HR         | 002        | 2023-04-20 | 2023-07-31 | 4800
+105         | Finance    | 001        | 2023-05-05 | 2023-09-30 | 5200
+106         | IT         | 001        | 2023-06-01 | 2023-12-31 | 5800
+
+
+
+4. Fourth normal form
+We remove multivalued dependencies in 4NF
+Since there are not multivalue dependencies so it is already in 4NF
+
+
+5. Fifth normal form
+Since it does not have compled multi valued relationships we dont need to convert it into fifth normal form
+
+Question 3
+In a relational database, a primary key uniquely identifies each record in a table, ensuring data integrity
+A foreign key establishes a connection between tables by referencing the primary key of another table, enforcing referential integrity
+
+Question 4
+The ACID properties in database transactions stand for:
+
+Atomicity: Ensures that transactions are treated as indivisible units, either fully completed or fully aborted.
+Consistency: Guarantees that transactions maintain the database's integrity, adhering to all constraints and rules.
+Isolation: Ensures that transactions operate independently and do not interfere with each other's execution.
+Durability: Ensures that the effects of committed transactions persist even in the face of system failures or crashes.
+
+Question 5
+Indexing in a database is a method of organizing data to improve query performance.
+It involves creating a separate data structure (an index) that contains sorted keys
+extracted from one or more columns in a table. Indexing improves query performance
+by enabling faster data retrieval through optimized lookup operations, reducing
+disk I/O, minimizing data processing, and providing direct access to specific rows.
+
+Question 6
+Concurrency control in a multi-user database environment ensures that multiple transactions
+can execute simultaneously without causing data inconsistency. It involves techniques like
+locking and two-phase locking to manage access to shared resources and prevent conflicts
+between transactions. Deadlocks occur when transactions are waiting for each other to release
+resources, leading to a stalemate situation. Concurrency control mechanisms, including deadlock
+detection and resolution, help prevent deadlocks and ensure smooth operation of the database system.
+
+Question 7
+Database sharding is a method of horizontally breaking up data across several
+database instances or servers. It permits the storage of a part of each partition,
+referred to as shards, and parallel processing. Most often sharding is used for
+scaling, performance, and availability improvements in large database cluster systems.
+
+A few live examples on this:
+
+Social Media Platforms: Social media platforms such as Facebook and Twitter deal
+with huge amounts of user data comprising posts, comments, interactions among others.
+They employ database sharding to manage this kind of information effectively. For example,
+user data can be distributed geographically or by user ID. This helps to spread the load
+across multiple databases ensuring quick response times and high availability even at peak times.
+
+E-commerce Websites: Ecommerce websites like Amazon and eBay handle massive product catalogs;
+user profiles also do enormous transaction volumes. The problem of scaling these large datasets
+has been addressed through sharding.This means that while products’ details may be split along
+categories or SKU ranges; customer data can be split according to geographic locations or customer IDs.
+Thus the e-commerce site can expand its infrastructure horizontally so that it can cope with higher
+traffic as well as guaranteeing recovery though sufficient redundancy is available for those
+exceptional periods
+
